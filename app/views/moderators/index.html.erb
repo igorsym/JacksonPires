@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Moderators</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Password</th>
+      <th>Salt</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @moderators.each do |moderator| %>
+      <tr>
+        <td><%= moderator.name %></td>
+        <td><%= moderator.email %></td>
+        <td><%= moderator.password %></td>
+        <td><%= moderator.salt %></td>
+        <td><%= link_to 'Show', moderator %></td>
+        <td><%= link_to 'Edit', edit_moderator_path(moderator) %></td>
+        <td><%= link_to 'Destroy', moderator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Moderator', new_moderator_path %>

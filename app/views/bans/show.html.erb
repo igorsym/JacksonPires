@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Forever:</strong>
+  <%= @ban.forever %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @ban.end_date %>
+</p>
+
+<%= link_to 'Edit', edit_ban_path(@ban) %> |
+<%= link_to 'Back', bans_path %>
