@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  permanente: false
-  termino: 2018-11-07
-
-two:
-  permanente: false
-  termino: 2018-11-07

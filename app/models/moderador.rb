@@ -1,2 +1,0 @@
-class Moderador < ApplicationRecord
-end
