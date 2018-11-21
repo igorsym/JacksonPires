@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @evento.nome %>
+</p>
+
+<p>
+  <strong>Modalidade:</strong>
+  <%= @evento.modalidade %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @evento.data %>
+</p>
+
+<p>
+  <strong>Horario inicio:</strong>
+  <%= @evento.horario_inicio %>
+</p>
+
+<p>
+  <strong>Horario termino:</strong>
+  <%= @evento.horario_termino %>
+</p>
+
+<p>
+  <strong>Periodicidade:</strong>
+  <%= @evento.periodicidade %>
+</p>
+
+<p>
+  <strong>Local:</strong>
+  <%= @evento.local %>
+</p>
+
+<p>
+  <strong>Descricao:</strong>
+  <%= @evento.descricao %>
+</p>
+
+<p>
+  <strong>Convite:</strong>
+  <%= @evento.convite %>
+</p>
+
+<%= link_to 'Edit', edit_evento_path(@evento) %> |
+<%= link_to 'Back', eventos_path %>

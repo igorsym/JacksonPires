@@ -1,0 +1,2 @@
+module BanidosHelper
+end

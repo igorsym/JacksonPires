@@ -1,0 +1,2 @@
+class Banido < ApplicationRecord
+end

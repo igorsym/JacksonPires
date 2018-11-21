@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  estrelas: 1
+  comentario: MyText
+
+two:
+  estrelas: 1
+  comentario: MyText

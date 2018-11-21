@@ -1,0 +1,17 @@
+<%= form_with(model: solicitacao, local: true) do |form| %>
+  <% if solicitacao.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(solicitacao.errors.count, "error") %> prohibited this solicitacao from being saved:</h2>
+
+      <ul>
+      <% solicitacao.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

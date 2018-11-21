@@ -1,0 +1,2 @@
+class Participacao < ApplicationRecord
+end
