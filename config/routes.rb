@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'home/index'
+  resources :sessions
   resources :moderators
   resources :ratings
   resources :participations
