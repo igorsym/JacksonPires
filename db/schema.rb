@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_21_181354) do
+ActiveRecord::Schema.define(version: 2018_11_30_161309) do
 
   create_table "bans", force: :cascade do |t|
     t.boolean "forever"
@@ -78,8 +78,7 @@ ActiveRecord::Schema.define(version: 2018_11_21_181354) do
     t.string "phone"
     t.date "birth_date"
     t.boolean "gender"
-    t.string "password_digest"
-    t.integer "salt"
+    t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
