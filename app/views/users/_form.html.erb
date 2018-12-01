@@ -38,8 +38,8 @@
 
   <div class="field">
     <%= form.label :gender %>
-    <%= form.radio_button :gender, 1 %> male
-    <%= form.radio_button :gender, 0 %> female<br />
+    <%= form.radio_button :gender, true %> male
+    <%= form.radio_button :gender, false %> female<br />
 
   </div>
 
@@ -52,7 +52,10 @@
     <%= form.label :salt %>
     <%= form.number_field :salt %>
   </div>
-
+  <div class="field">
+    <%= form.label :photo %><br />
+    <%= form.file_field :photo %>
+  </div>
   <div class="actions">
     <%= form.submit %>
   </div>
