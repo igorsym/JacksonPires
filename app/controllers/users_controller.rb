@@ -15,13 +15,11 @@ class UsersController < ApplicationController
   def edicao
   end
 
+  
+
   def exclusao
   end
 
-
-
-  def perfil
-  end
   # GET /users/new
   def new
     @user = User.new

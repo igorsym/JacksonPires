@@ -1,3 +1,6 @@
 <p>
   <strong>SportMatch</strong
 </p><br />
+<% if current_user %>
+  <%= render 'form2', user: current_user %>
+<% end %></p>
