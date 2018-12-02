@@ -35,9 +35,15 @@
   <%= @user.password %>
 </p>
 
+
+
 <p>
-  <strong>Salt:</strong>
-  <%= @user.salt %>
+  <strong>Photo:</strong>
+    <% if @user.has_photo? %>
+      <%= image_tag(@user.photo_path, size: "200x200") %>
+    <% else %>
+      No photo.
+    <% end %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

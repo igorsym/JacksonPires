@@ -1,4 +1,11 @@
+<h1>Sportmatch</h1>
 <p>
-<%= link_to "Log In", new_session_path %>
+<% if current_user %>
+	Logged in as <%= current_user.email %>.
+	<%= link_to "Log Out", logout_path %>
+<% else %>
+	<%= link_to "Sign Up", signup_path %> |
+	<%= link_to "Log In", new_session_path %>
+<% end %></p>
 </p>
 <hr>
