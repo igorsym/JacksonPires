@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
+  after_save :store_photo
   #validacoes:
   validates_presence_of :name
   validates_presence_of :username

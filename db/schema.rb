@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_21_192851) do
+ActiveRecord::Schema.define(version: 2018_11_30_161309) do
 
   create_table "bans", force: :cascade do |t|
     t.boolean "forever"
