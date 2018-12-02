@@ -15,11 +15,6 @@ class UsersController < ApplicationController
   def edicao
   end
 
-  
-
-  def exclusao
-  end
-
   # GET /users/new
   def new
     @user = User.new
@@ -64,7 +59,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

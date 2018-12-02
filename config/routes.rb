@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
   get 'index', to: 'application#_navigation', as: 'index'
   get 'editing' => 'users#edicao'
-  get 'exclusao' => 'users#exclusao'
-  
+
+
 
 
 
@@ -23,6 +23,6 @@ Rails.application.routes.draw do
   resources :users
 
 
-  root to: "users#index"
+  root "sessions#new"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
