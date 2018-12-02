@@ -4,6 +4,12 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
   get 'index', to: 'application#_navigation', as: 'index'
+  get 'perfil' => 'users#perfil'
+  get 'edicao' => 'users#edicao'
+  get 'exclusao' => 'users#exclusao'
+
+
+
 
   resources :sessions
   resources :moderators

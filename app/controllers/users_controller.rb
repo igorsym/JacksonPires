@@ -12,6 +12,16 @@ class UsersController < ApplicationController
   def show
   end
 
+  def edicao
+  end
+
+  def exclusao
+  end
+
+
+
+  def perfil
+  end
   # GET /users/new
   def new
     @user = User.new
@@ -61,7 +71,7 @@ class UsersController < ApplicationController
     end
   end
 
-  
+
   private
     # Use callbacks to share common setup or constraints between actions.
 
