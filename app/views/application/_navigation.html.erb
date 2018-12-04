@@ -3,10 +3,11 @@
 <% if current_user %>
 	Logged in as <%= current_user.email %>.<br />
 	<% if current_user.has_photo? %>
-		<%= image_tag(current_user.photo_path, size: "200x200") %><br />
+		<%= image_tag(current_user.photo_path, size: "150x150") %><br />
 	<% end %>
 	<%= current_user.name %><br />
 	<%= link_to "Edit Profile", "/editing" %><br />
+	<%= link_to "Create events", new_event_path %><br />
 	<%= link_to "Log Out", logout_path %>
 <% else %>
 	<%= link_to "Sign Up", signup_path %> |

@@ -5,4 +5,7 @@ class Event < ApplicationRecord
   has_many :ratings
   has_many :reports
 
+  #validacoes:
+  
+
 end
