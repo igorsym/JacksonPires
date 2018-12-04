@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get 'events/:id', to: 'events#show', as: 'event'
   get 'new_event', to: 'events#new', as: 'new_event'
 
+  get 'new_rating', to: 'ratings#new', as: 'new_rating'
+  get 'new_report', to: 'reports#new', as: 'new_report'
+
 
 
 
