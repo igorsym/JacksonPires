@@ -10,6 +10,18 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+    @all_participations = Participation.where("event_id = ?", @event.id)
+    @host_participation = @all_participations.first
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    @host = false
+    if @current_user.id == @host_participation.user_id
+      @host = true
+    end
+
+    @participating_users = []
+    @all_participations.each do |participation|
+      @participating_users << User.find(participation.user_id)
+    end
   end
 
   # GET /events/new
