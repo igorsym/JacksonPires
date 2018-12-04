@@ -50,7 +50,7 @@
 
 <p>
   <% if @event.all_can_invite && @in_event %>
-    <strong>Invite Users: (add link later)</strong><br>
+    <%= link_to 'Invite Users', new_event_invitation_url(@event)%><br>
   <% elsif @event.all_can_invite && !@in_event%>
     <strong>Solicitar acesso: (add link later)</strong><br>
   <% else @event.all_can_invite == false%>

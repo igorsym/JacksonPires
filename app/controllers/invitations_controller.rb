@@ -15,6 +15,7 @@ class InvitationsController < ApplicationController
   # GET /invitations/new
   def new
     @invitation = Invitation.new
+    @found_users = User.where(name: params[:search])
   end
 
   # GET /invitations/1/edit

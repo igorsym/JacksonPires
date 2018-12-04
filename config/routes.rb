@@ -18,10 +18,12 @@ Rails.application.routes.draw do
   resources :ratings
   resources :participations
   resources :requests
-  resources :invitations
+  #resources :invitations
   resources :bans
   resources :reports
-  resources :events
+  resources :events do
+    resources :invitations
+  end
   resources :users
 
 
