@@ -17,9 +17,32 @@
   </div>
 
   <div class="field">
+    <%= form.label :sport, 'Basketball', :value => 'basketball' %> 
+    <%= form.radio_button :sport, 'basketball'%>
+    
+    <%= form.label :sport, 'Volleyball', :value => 'volleyball' %>
+    <%= form.radio_button :sport, 'volleyball' %>
+    
+    <%= form.label :sport, 'Soccer', :value => 'soccer' %>
+    <%= form.radio_button :sport, 'soccer' %>
+    
+    <%= form.label :sport, 'Running', :value => 'running' %>
+    <%= form.radio_button :sport, 'running' %>
+
+    <%= form.label :sport, 'Tennis', :value => 'tennis' %>
+    <%= form.radio_button :sport, 'tennis' %>
+
+    <%= form.label :sport, 'Other (specify in description)', :value => 'other' %>
+    <%= form.radio_button :sport, 'other' %>
+
+  </div>
+
+<!--
+  <div class="field">
     <%= form.label :sport %>
     <%= form.text_field :sport %>
   </div>
+-->
 
   <div class="field">
     <%= form.label :event_date %>
@@ -37,9 +60,27 @@
   </div>
 
   <div class="field">
+
+    <%= form.label :frequency, 'Single time', :value => 'single_time' %> 
+    <%= form.radio_button :frequency, 'single_time'%>
+    
+    <%= form.label :frequency, 'Every week', :value => 'every_week' %>
+    <%= form.radio_button :frequency, 'every_week' %>
+    
+    <%= form.label :frequency, 'Every month', :value => 'every_month' %>
+    <%= form.radio_button :frequency, 'every_month' %>
+    
+    <%= form.label :frequency, 'Every year', :value => 'every_year' %>
+    <%= form.radio_button :frequency, 'every_year' %>
+    
+  </div>
+
+<!--
+  <div class="field">
     <%= form.label :frequency %>
     <%= form.text_field :frequency %>
   </div>
+-->
 
   <div class="field">
     <%= form.label :place %>
