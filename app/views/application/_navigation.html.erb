@@ -9,14 +9,9 @@
 	<%= link_to "Edit Profile", "/editing" %><br />
 	<%= link_to "Create event", new_event_path %><br />
 	<%= link_to "Log Out", logout_path %><br />
-
-<% else %>
-	<%= link_to "Sign Up", signup_path %> |
-	<%= link_to "Log In", new_session_path %>
-<% end %></p>
 </p>
 <hr>
-<h1>Eventos Disponíveis</h1>
+<h1>Available Events</h1>
 <tbody>
 		<% @events.each do |event| %>
 		  	<b>Event Name:</b> <%= event.name %><br>
@@ -31,8 +26,12 @@
 		  	&nbsp&nbsp&nbsp<b>Place:</b> <%=event.place %><br>
 		  	&nbsp&nbsp&nbsp<b>Description:</b> <%=event.description %><br>
 
-		  	<%= link_to "Acessar evento", event_path(event.id) %><br>
-		  	<br>
+				<%= link_to "Access Event", event_path(event.id) %><br>
+				<br>
 
 		<% end %>
 	</tbody>
+<% else %>
+	<%= link_to "Sign Up", signup_path %> |
+	<%= link_to "Log In", new_session_path %>
+<% end %></p>
