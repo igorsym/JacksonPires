@@ -1,5 +1,4 @@
-<p id="notice"><%= notice %></p>
-
+<b><%= @current_user.name %></b>
 <p>
   <strong>Name:</strong>
   <%= @event.name %>
@@ -40,10 +39,31 @@
   <%= @event.description %>
 </p>
 
+<strong>Participating Users:</strong><br>
+<tbody>
+    <% @participating_users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+      </tr>
+    <% end %>
+</tbody>
+
 <p>
-  <strong>All can invite:</strong>
-  <%= @event.all_can_invite %>
+  <% if @event.all_can_invite && @in_event %>
+    <strong>Invite Users: (add link later)</strong><br>
+  <% elsif @event.all_can_invite && !@in_event%>
+    <strong>Solicitar acesso: (add link later)</strong><br>
+  <% else @event.all_can_invite == false%>
+    <% if @host %>
+      <strong>Invite: (add link later)</strong><br>
+    <% elsif !@in_event%>
+      <strong>Solicitar acesso: (add link later)</strong><br>
+    <% end %>
+  <% end %>
 </p>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<strong>Avaliar um participante (add link later)</strong> | <strong>Denunciar um participante (add link later)</strong><br>
+<% if @host %>
+  <%= link_to 'Edit Event', edit_event_path(@event) %> |  
+<% end %>
+<%= link_to 'Home', root_url %>

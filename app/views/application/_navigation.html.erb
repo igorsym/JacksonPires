@@ -18,19 +18,19 @@
 <h1><%= @mensagem %></h1>
 <tbody>
 		<% @events.each do |event| %>
-				<b>Nome do Evento:</b> <%= event.name %><br>
+		  	<b>Event Name:</b> <%= event.name %><br>
 
-				&nbsp&nbsp&nbsp<b>Modalidade:</b>	<%= event.sport %><br>
+		  	&nbsp&nbsp&nbsp<b>Sport:</b>	<%= event.sport %><br>
 
-				&nbsp&nbsp&nbsp<b>Data:</b>  <%= event.event_date %><br>
+		  	&nbsp&nbsp&nbsp<b>Date:</b>  <%= event.event_date %><br>
 
-				&nbsp&nbsp&nbsp<b>Horário de Início:</b> <%=event.start_time %><br>
-				&nbsp&nbsp&nbsp<b>Horário de Término:</b> <%=event.end_time %><br>
+		  	&nbsp&nbsp&nbsp<b>Start Time:</b> <%=event.start_time %><br>
+		  	&nbsp&nbsp&nbsp<b>End Time:</b> <%=event.end_time %><br>
 
-				&nbsp&nbsp&nbsp<b>Local:</b> <%=event.place %><br>
-				&nbsp&nbsp&nbsp<b>Descrição:</b> <%=event.description %><br>
+		  	&nbsp&nbsp&nbsp<b>Place:</b> <%=event.place %><br>
+		  	&nbsp&nbsp&nbsp<b>Description:</b> <%=event.description %><br>
 
-				<%= link_to "Acessar evento", event_path(event.id) %><br>
+				<%= link_to "Access Event", event_path(event.id) %><br>
 				<br>
 
 		<% end %>

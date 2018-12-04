@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates_length_of :phone, is: 11
   validates_presence_of :birth_date
   validates_presence_of :password,
-  message: "must provided so we can recognize you"
+  message: "must be provided so we can recognize you"
   validates_length_of :password, in: 6..24
   validates_format_of :password, with: /[0-9]/,
   message: "must contain at least one number"
