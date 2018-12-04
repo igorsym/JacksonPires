@@ -9,6 +9,12 @@ class ApplicationController < ActionController::Base
 	helper_method :current_user
 
 	def _navigation
-		@events = Event.all
+		if params[:search]
+      @events = Event.where(name: params[:search]) #variavel events recebe o evento que tem o nome que foi armazenado no search
+			@mensagem = "Event Found"
+    else
+      @events = Event.all
+			@mensagem = "Events available"
+    end
 	end
 end

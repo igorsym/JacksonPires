@@ -4,7 +4,11 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    if params[:search]
+      @events = Event.where(name: params[:search])
+    else
+      @events = Event.all
+    end
   end
 
   # GET /events/1
@@ -21,7 +25,7 @@ class EventsController < ApplicationController
   def edit
   end
 
-  
+
   # POST /events
   # POST /events.json
   def create
@@ -34,7 +38,7 @@ class EventsController < ApplicationController
         format.json { render :show, status: :created, location: @event }
 
         #Create Participation
-        
+
       else
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }

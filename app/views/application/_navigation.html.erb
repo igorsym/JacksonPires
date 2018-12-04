@@ -11,7 +11,11 @@
 	<%= link_to "Log Out", logout_path %><br />
 </p>
 <hr>
-<h1>Eventos Disponíveis</h1>
+<%= form_tag(root_path, :method => :get) do %>
+  <%=  text_field_tag 'search', nil, placeholder: 'Enter search term...' %>
+  <%= submit_tag "Search Event" %>
+<% end %>
+<h1><%= @mensagem %></h1>
 <tbody>
 		<% @events.each do |event| %>
 				<b>Nome do Evento:</b> <%= event.name %><br>
