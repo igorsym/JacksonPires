@@ -49,11 +49,15 @@
 </tbody>
 
 <p>
-  <% if @event.all_can_invite %>
+  <% if @event.all_can_invite && @in_event %>
     <strong>Invite Users: (add link later)</strong><br>
-  <% else %>
+  <% elsif @event.all_can_invite && !@in_event%>
+    <strong>Solicitar acesso: (add link later)</strong><br>
+  <% else @event.all_can_invite == false%>
     <% if @host %>
       <strong>Invite: (add link later)</strong><br>
+    <% elsif !@in_event%>
+      <strong>Solicitar acesso: (add link later)</strong><br>
     <% end %>
   <% end %>
 </p>

@@ -22,6 +22,8 @@ class EventsController < ApplicationController
     @all_participations.each do |participation|
       @participating_users << User.find(participation.user_id)
     end
+
+    @in_event = @current_user.in? (@participating_users)
   end
 
   # GET /events/new
