@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
   get 'index', to: 'application#_navigation', as: 'index'
   get 'editing' => 'users#edicao'
+  get 'events/:id', to: 'events#show', as: 'event'
+  get 'new_event', to: 'events#new', as: 'new_event'
 
 
 

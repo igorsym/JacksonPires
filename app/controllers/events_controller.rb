@@ -25,11 +25,15 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
-
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    @participation = @event.participations.build(:is_host => true, :user=>@current_user)
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
+
+        #Create Participation
+        
       else
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
