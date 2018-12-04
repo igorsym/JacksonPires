@@ -52,17 +52,23 @@
   <% if @event.all_can_invite && @in_event %>
     <%= link_to 'Invite Users', new_event_invitation_url(@event)%><br>
   <% elsif @event.all_can_invite && !@in_event%>
-    <strong>Solicitar acesso: (add link later)</strong><br>
+    <strong>Ask to join: (add link later)</strong><br>
   <% else @event.all_can_invite == false%>
     <% if @host %>
       <strong>Invite: (add link later)</strong><br>
     <% elsif !@in_event%>
-      <strong>Solicitar acesso: (add link later)</strong><br>
+      <strong>Ask to join: (add link later)</strong><br>
     <% end %>
   <% end %>
 </p>
 
-<strong>Avaliar um participante (add link later)</strong> | <strong>Denunciar um participante (add link later)</strong><br>
+<%= link_to "Rate someone", new_rating_path(:event => @event, :rater => @current_user) %> | <%= link_to "Report someone", new_report_path %><br/><br/>
+
+<!--
+<strong>Avaliar um participante (add link later)</strong>
+<strong>Denunciar um participante (add link later)</strong><br>
+-->
+
 <% if @host %>
   <%= link_to 'Edit Event', edit_event_path(@event) %> |  
 <% end %>
