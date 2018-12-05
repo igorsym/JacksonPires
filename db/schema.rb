@@ -35,11 +35,10 @@ ActiveRecord::Schema.define(version: 2018_11_30_161309) do
 
   create_table "invitations", force: :cascade do |t|
     t.integer "event_id"
-    t.integer "user_id"
+    t.integer "sender_id"
+    t.integer "recipient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_invitations_on_event_id"
-    t.index ["user_id"], name: "index_invitations_on_user_id"
   end
 
   create_table "moderators", force: :cascade do |t|
@@ -64,8 +63,12 @@ ActiveRecord::Schema.define(version: 2018_11_30_161309) do
   create_table "ratings", force: :cascade do |t|
     t.integer "stars"
     t.text "comment"
+    t.integer "event_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_ratings_on_event_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
   create_table "reports", force: :cascade do |t|

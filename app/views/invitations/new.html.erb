@@ -25,6 +25,11 @@
     </div>
   <% end %>
 
+  
+
+  <%= form.hidden_field :event_id, :value => @event.id %>
+  <%= form.hidden_field :sender_id, :value => @current_user.id %>
+
   <div class="field">
   	<% if @found_users %>
 	<% @count = 0 %>
@@ -32,15 +37,13 @@
 		<% if @count == @found_users.length %>
 			<% break %>
 		<%end%>
-		<%= form.label :users, @found_users[@count].name, :style => "display:inline", :value => @found_users[@count].name %>
-		<%= form.radio_button :users, @found_users[@count].name %>
+		<%= form.label :recipient_id, @found_users[@count].name, :style => "display:inline", :value => User.find_by_name(@found_users[@count].name).id %>
+		<%= form.radio_button :recipient_id, @found_users[@count].id %>
 		<% @count += 1 %>
 		<% end %>
 	<% end %>
   </div>
   
-
-
   <div class="actions">
     <%= form.submit "Send Invitation(s)"%>
   </div>
