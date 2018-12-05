@@ -1,6 +1,6 @@
 <h1>Invite Users</h1>
 
-<% @event = Event.find(params[:event_id]) %>
+<% @event = Event.find(params[:name]) %>
 <% @participations = Participation.where("event_id = ?", @event.id) %>
 <% @p_users = [] %>
 <% @participations.each do |participation| %>
@@ -38,11 +38,10 @@
 		<% end %>
 	<% end %>
   </div>
-  
+
 
 
   <div class="actions">
     <%= form.submit "Send Invitation(s)"%>
   </div>
 <% end %>
-

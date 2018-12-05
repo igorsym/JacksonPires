@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get 'new_rating', to: 'ratings#new', as: 'new_rating'
   get 'new_report', to: 'reports#new', as: 'new_report'
 
+  get 'new_invitation', to: 'invitations#new', as: 'new_invitation'
+
   resources :sessions
   resources :moderators
   #resources :ratings
