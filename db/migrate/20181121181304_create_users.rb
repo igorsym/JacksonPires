@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.date :birth_date
       t.boolean :gender
       t.string :password_digest
+      t.boolean :is_moderator
 
       t.timestamps
     end

@@ -11,6 +11,8 @@
     </div>
   <% end %>
 
+   <%= form.hidden_field :is_moderator, :value => false %>
+
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>

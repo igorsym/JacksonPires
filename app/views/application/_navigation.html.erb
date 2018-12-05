@@ -2,7 +2,7 @@
 <p>
 <% if current_user %>
 	Logged in as <%= current_user.email %>.<br />
-
+	<% User.find(session[:user_id]).is_moderator = true %>
 	<% if current_user.invitations.length > 0 %>
 		<%= "You have received this invitations:" %><br /><br />
 			<% current_user.invitations.each do |invitation| %>
