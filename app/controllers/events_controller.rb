@@ -27,11 +27,13 @@ class EventsController < ApplicationController
     @all_participations.each do |participation|
       @participating_users << User.find(participation.user_id)
     end
-    
+
     @made_request = false
-    @request_by_user = @event.requests.where("user_id = ?", @current_user.id)
-    if @request_by_user
-    	@made_request = true
+    if @event.requests.first != nil
+    	@request_by_user = @event.requests.where("user_id = ?", @current_user.id)
+    	if !@request_by_user.empty?
+    		@made_request = true
+    	end
     end
     @in_event = @current_user.in? (@participating_users)
   end
