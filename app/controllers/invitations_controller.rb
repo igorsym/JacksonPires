@@ -25,6 +25,11 @@ class InvitationsController < ApplicationController
   # POST /invitations
   # POST /invitations.json
   def create
+
+    @invite= Invitation.new(invitation_params)
+    @invite.sender_id= current_user.id #set the sender to the current_user
+    
+
     @name = invitation_params[:users]
     @invited_user = User.where("name = ?", @name)
     @event = Event.find(params[:event_id])
