@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   resources :sessions
   resources :moderators
-  #resources :ratings
+  resources :ratings
   resources :participations
   resources :requests
   #resources :invitations
@@ -24,7 +24,6 @@ Rails.application.routes.draw do
   resources :reports
   resources :events do
     resources :invitations
-    resources :ratings
   end
   resources :users
 

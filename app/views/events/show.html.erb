@@ -62,7 +62,7 @@
   <% end %>
 </p>
 
-<%= link_to "Rate someone", new_event_rating_url(@event) %> | <%= link_to "Report someone", new_report_path %><br/><br/>
+<%= link_to "Rate someone", new_rating_path(:event_id => @event.id) %> | <%= link_to "Report someone", new_report_path %><br/><br/>
 
 <!--      new_event_rating_url(@event) new_rating_path(:event => @event, :rater => current_user.id)
 <strong>Avaliar um participante (add link later)</strong>

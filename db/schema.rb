@@ -61,6 +61,10 @@ ActiveRecord::Schema.define(version: 2018_11_30_161309) do
   end
 
   create_table "ratings", force: :cascade do |t|
+    t.integer "event_id"
+    t.integer "rater_id"
+    t.integer "rated_id"
+    t.string "token"
     t.integer "stars"
     t.text "comment"
     t.integer "event_id"
