@@ -51,20 +51,24 @@
 <p>
   <% if @event.all_can_invite && @in_event %>
     <%= link_to 'Invite Users', new_event_invitation_url(@event)%><br>
-  <% elsif @event.all_can_invite && !@in_event%>
+  <% elsif @event.all_can_invite && !@in_event && !@made_request%>
     <%= form_with(model: [@event, @event.requests.build], local: true) do |form| %>
       <%= form.hidden_field :user_id, :value => @current_user.id %>
       <%= form.hidden_field :event_id, :value => @event.id %>
       <%= form.submit "Ask to join"%>
     <% end %>
-  <% else @event.all_can_invite == false%>
+  <% elsif @event.all_can_invite && !@in_event && @made_request%>
+    <strong>Waiting for approval<strong>
+  <% elsif @event.all_can_invite == false%>
     <% if @host %>
       <%= link_to 'Invite Users', new_event_invitation_url(@event)%><br>
-    <% elsif !@in_event%>
+    <% elsif !@in_event && !@made_request%>
       <%= form_with(model: [@event, @event.requests.build], local: true) do |form| %>
         <%= form.hidden_field :user_id, :value => @current_user.id %>
         <%= form.submit "Ask to join" %>
       <% end %>
+    <% elsif !@in_event && @made_request%>
+      <strong>Waiting for approval<strong>
     <% end %>
   <% end %>
 </p>
