@@ -1,5 +1,8 @@
 <h1>New Rating</h1>
 
+<% @event = Event.find(params[:event_id]) %>
+<% @event %>
+
 <%= render 'form', rating: @rating %>
 
-<%= link_to 'Back', ratings_path %>
+<%= link_to 'Cancel', root_url %>

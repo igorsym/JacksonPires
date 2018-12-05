@@ -15,8 +15,8 @@ class RatingsController < ApplicationController
   # GET /ratings/new
   def new
     @rating = Rating.new
-    @rating.rater = params[:rater].to_i
-    @rating.event = params[:event].to_i
+    # @rating.rater = params[:rater].to_i
+    # @rating.event = params[:event].to_i
   end
 
   # GET /ratings/1/edit
