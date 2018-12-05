@@ -55,16 +55,16 @@
     <strong>Ask to join: (add link later)</strong><br>
   <% else @event.all_can_invite == false%>
     <% if @host %>
-      <strong>Invite: (add link later)</strong><br>
+      <%= link_to 'Invite Users', new_event_invitation_url(@event)%><br>
     <% elsif !@in_event%>
       <strong>Ask to join: (add link later)</strong><br>
     <% end %>
   <% end %>
 </p>
 
-<%= link_to "Rate someone", new_rating_path(:event => @event, :rater => @current_user) %> | <%= link_to "Report someone", new_report_path %><br/><br/>
+<%= link_to "Rate someone", new_event_rating_url(@event) %> | <%= link_to "Report someone", new_report_path %><br/><br/>
 
-<!--
+<!--      new_event_rating_url(@event) new_rating_path(:event => @event, :rater => current_user.id)
 <strong>Avaliar um participante (add link later)</strong>
 <strong>Denunciar um participante (add link later)</strong><br>
 -->
