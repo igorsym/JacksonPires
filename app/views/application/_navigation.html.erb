@@ -1,27 +1,25 @@
-<h1>Sportmatch</h1>
-<p>
-<% if current_user %>
-	Logged in as <%= current_user.email %>.<br />
-
-	<% if current_user.invitations.length > 0 %>
-		<%= "You have received this invitations:" %><br /><br />
-			<% current_user.invitations.each do |invitation| %>
-				<% event = Event.find(invitation.event_id) %>
-				<%= link_to event.name, event_path(event.id) %>|
-			<% end %>
-	<br /><br />
-	<% end %>
-
+<% if current_user %><div id="home_top">
+	<div class="txt">Logged in as <%= current_user.email %>.
+	<%= button_to "Log Out", logout_path, form: {style: 'display:inline-block;'}, :class => "buttons" , :method => :get %></div></p>
+	<div  id="tt">Sportmatch</div>
 	<% if current_user.has_photo? %>
 		<%= image_tag(current_user.photo_path, size: "150x150") %><br />
 	<% end %>
 	<div id="username">
 	<%= current_user.name %><br />
 	</div>
+	<% if current_user.invitations.length > 0 %>
+		<div class="txt"><%= "You have received this invitations:" %><br /><br />
+			<% current_user.invitations.each do |invitation| %>
+				<% event = Event.find(invitation.event_id) %>
+				<%= link_to event.name, event_path(event.id) , :class => "buttons"%>
+				</div>
+			<% end %>
+	<br /><br />
+	<% end %>
 	<%= button_to "Edit Profile", "/editing", form: {style: 'display:inline-block;'}, :method => :get , :class => "buttons" %>
 	<%= button_to "Create event", new_event_path, form: {style: 'display:inline-block;'}, :method => :get , :class => "buttons" %>
-	<%= button_to "Log Out", logout_path, form: {style: 'display:inline-block;'}, :class => "buttons" , :method => :get %>
-</p>
+</div>
 <div id="line"><hr></div>
 <div id="home_body">
 <%= form_tag(root_path, :method => :get) do %>
