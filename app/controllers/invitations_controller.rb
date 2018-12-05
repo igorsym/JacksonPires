@@ -15,7 +15,8 @@ class InvitationsController < ApplicationController
   # GET /invitations/new
   def new
     @invitation = Invitation.new
-    @found_users = User.where(name: params[:search])
+    @found_users = User.where("name like ?", "#{params[:search]}%")
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   # GET /invitations/1/edit
@@ -25,11 +26,12 @@ class InvitationsController < ApplicationController
   # POST /invitations
   # POST /invitations.json
   def create
-    @invitation = Invitation.new(invitation_params)
 
+    @invitation = Invitation.new(invitation_params)
+    @event = Event.find(invitation_params[:event_id])
     respond_to do |format|
       if @invitation.save
-        format.html { redirect_to @invitation, notice: 'Invitation was successfully created.' }
+        format.html { redirect_to event_path(@event.id), notice: 'Invitation was successfully created.' }
         format.json { render :show, status: :created, location: @invitation }
       else
         format.html { render :new }
@@ -70,6 +72,6 @@ class InvitationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invitation_params
-      params.fetch(:invitation, {})
+      params.require(:invitation).permit(:event_id, :sender_id, :recipient_id)
     end
 end

@@ -4,6 +4,7 @@ class Event < ApplicationRecord
   has_many :participations
   has_many :ratings
   has_many :reports
+  has_many :invitations
 
   #validacoes:
   validates_presence_of :name

@@ -1,4 +1,5 @@
 <h1>Invite Users</h1>
+
 <% @event = Event.find(params[:event_id]) %>
 <% @participations = Participation.where("event_id = ?", @event.id) %>
 <% @p_users = [] %>
@@ -7,19 +8,44 @@
 <% end %>
 
 <%= form_tag(new_event_invitation_url(@event), :method => :get) do %>
-  <%=  text_field_tag 'search', nil, placeholder: 'Enter search term...' %>
+  <%=  text_field_tag 'search', nil, placeholder: 'Enter name...' %>
   <%= submit_tag "Search Users" %>
 <% end %>
 
+<%= form_with(model: [@event, @invitation], local: true) do |form| %>
+  <% if @invitation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@invitation.errors.count, "error") %> prohibited this invitation from being saved:</h2>
 
-<% if @found_users %>
+      <ul>
+      <% @invitation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <%= form.hidden_field :event_id, :value => @event.id %>
+  <%= form.hidden_field :sender_id, :value => @current_user.id %>
+
+  <div class="field">
+  	<% if @found_users %>
 	<% @count = 0 %>
 	<% loop do %>
 		<% if @count == @found_users.length %>
 			<% break %>
 		<%end%>
-		<%=  @found_users[@count].name %>
+		<%= form.label :recipient_id, @found_users[@count].name, :style => "display:inline", :value => User.find_by_name(@found_users[@count].name).id %>
+		<%= form.radio_button :recipient_id, @found_users[@count].id %>
 		<% @count += 1 %>
 		<% end %>
 	<% end %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Send Invitation(s)"%>
+  </div>
 <% end %>
+

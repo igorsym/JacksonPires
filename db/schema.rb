@@ -34,6 +34,9 @@ ActiveRecord::Schema.define(version: 2018_11_30_161309) do
   end
 
   create_table "invitations", force: :cascade do |t|
+    t.integer "event_id"
+    t.integer "sender_id"
+    t.integer "recipient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -58,6 +61,10 @@ ActiveRecord::Schema.define(version: 2018_11_30_161309) do
   end
 
   create_table "ratings", force: :cascade do |t|
+    t.integer "event_id"
+    t.integer "rater_id"
+    t.integer "rated_id"
+    t.string "token"
     t.integer "stars"
     t.text "comment"
     t.datetime "created_at", null: false
