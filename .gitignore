@@ -33,3 +33,4 @@
 .DS_Store
 app/.DS_Store
 public/photo_store/1.jpg
+app/views/invitations/new.html.erb
