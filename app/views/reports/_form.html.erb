@@ -1,4 +1,24 @@
 <%= form_with(model: report, local: true) do |form| %>
+  
+  <% @event = Event.find(params[:event_id]) %>
+  <% @participations = Participation.where("event_id = ?", @event.id) %>
+
+  <div class="field">
+  <% if @participations %>
+  <% @count = 0 %>
+  <% loop do %>
+    <% if @count == @participations.length %>
+      <% break %>
+      <%end%>
+      <% if @participations[@count].user_id != current_user.id %>
+        <%= form.radio_button :reportee_id, @participations[@count].user_id, :style => "display:inline" %>
+        <%= form.label :reportee_id, User.find(@participations[@count].user_id).name, :style => "display:inline", :value => @participations[@count].user_id %>
+        <% @count += 1 %>
+      <%end%>
+    <% end %>
+  <% end %>
+  </div>
+
   <% if report.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(report.errors.count, "error") %> prohibited this report from being saved:</h2>
@@ -10,6 +30,10 @@
       </ul>
     </div>
   <% end %>
+
+  <%= form.hidden_field :reporter_id, :value => current_user.id %>
+  <%= form.hidden_field :event_id, :value => params[:event_id] %>
+  <%= form.hidden_field :moderator_id, :value => 1 %>
 
   <div class="field">
     <%= form.label :reason %>
