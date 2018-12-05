@@ -29,6 +29,19 @@ class EventsController < ApplicationController
     end
 
     @in_event = @current_user.in? (@participating_users)
+
+
+    if params[:confirmed]
+      Participation.create(:is_host => false, :event_id => @event.id, :user_id => @current_user.id)
+      i = 0
+      while i < @current_user.invitations.length do
+        event2= Event.find(@current_user.invitations[i].event_id)
+        if event2.id == @event.id
+          @current_user.invitations[i].destroy
+        end
+        i = i + 1
+      end
+    end
   end
 
   # GET /events/new

@@ -5,12 +5,14 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
   get 'index', to: 'application#_navigation', as: 'index'
   get 'editing' => 'users#edicao'
+  get 'invitations_path' => 'invitations#index'
 
   get 'events/:id', to: 'events#show', as: 'event'
   get 'new_event', to: 'events#new', as: 'new_event'
 
   get 'new_rating', to: 'ratings#new', as: 'new_rating'
   get 'new_report', to: 'reports#new', as: 'new_report'
+
 
   resources :sessions
   resources :moderators

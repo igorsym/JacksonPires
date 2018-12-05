@@ -43,7 +43,7 @@
 <tbody>
     <% @participating_users.each do |user| %>
       <tr>
-        <td><%= user.name %></td>
+        <td><%= user.name %></td><br/>
       </tr>
     <% end %>
 </tbody>
@@ -64,12 +64,37 @@
 
 <%= link_to "Rate someone", new_rating_path(:event_id => @event.id) %> | <%= link_to "Report someone", new_report_path %><br/><br/>
 
+<% if @current_user.invitations && params[:confirmed] == nil %>
+  <% @current_user.invitations.each do |invitation| %>
+    <% event = Event.find(invitation.event_id) %>
+    <% if event.id == @event.id %>
+      <b> You have been invited to this event</b>
+      <%= form_tag(event_path(@event.id), :method => :get) do %>
+        <div class="field">
+          <%= check_box_tag :confirmed %>
+          <br />
+        </div>
+        <%= submit_tag "Confirm" %>
+    <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+<br />
+<%= link_to "Home", root_url %>
+
+
 <!--      new_event_rating_url(@event) new_rating_path(:event => @event, :rater => current_user.id)
 <strong>Avaliar um participante (add link later)</strong>
 <strong>Denunciar um participante (add link later)</strong><br>
--->
+
+
+
+
+
+
+
 
 <% if @host %>
-  <%= link_to 'Edit Event', edit_event_path(@event) %> |  
+  <%= link_to 'Edit Event', edit_event_path(@event) %> |
 <% end %>
 <%= link_to 'Home', root_url %>
