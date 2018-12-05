@@ -28,9 +28,10 @@ class InvitationsController < ApplicationController
   def create
 
     @invitation = Invitation.new(invitation_params)
+    @event = Event.find(invitation_params[:event_id])
     respond_to do |format|
       if @invitation.save
-        format.html { redirect_to root_url, notice: 'Invitation was successfully created.' }
+        format.html { redirect_to event_path(@event.id), notice: 'Invitation was successfully created.' }
         format.json { render :show, status: :created, location: @invitation }
       else
         format.html { render :new }
