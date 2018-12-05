@@ -12,9 +12,6 @@
 	<br /><br />
 	<% end %>
 
-
-	<%= button_to "Log Out", logout_path, form: {style: 'display:inline-block;'}, :class => "buttons" , :method => :get %>
-
 	<% if current_user.has_photo? %>
 		<%= image_tag(current_user.photo_path, size: "150x150") %><br />
 	<% end %>
@@ -23,6 +20,7 @@
 	</div>
 	<%= button_to "Edit Profile", "/editing", form: {style: 'display:inline-block;'}, :method => :get , :class => "buttons" %>
 	<%= button_to "Create event", new_event_path, form: {style: 'display:inline-block;'}, :method => :get , :class => "buttons" %>
+	<%= button_to "Log Out", logout_path, form: {style: 'display:inline-block;'}, :class => "buttons" , :method => :get %>
 </p>
 <div id="line"><hr></div>
 <div id="home_body">
