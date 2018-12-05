@@ -16,12 +16,13 @@ Rails.application.routes.draw do
   resources :moderators
   resources :ratings
   resources :participations
-  resources :requests
+  #resources :requests
   #resources :invitations
   resources :bans
   resources :reports
   resources :events do
     resources :invitations
+    resources :requests
   end
   resources :users
 

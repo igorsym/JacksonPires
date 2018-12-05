@@ -73,11 +73,17 @@ ActiveRecord::Schema.define(version: 2018_11_30_161309) do
 
   create_table "reports", force: :cascade do |t|
     t.text "reason"
+    t.integer "event_id"
+    t.integer "reporter_id"
+    t.integer "reportee_id"
+    t.integer "moderator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "requests", force: :cascade do |t|
+    t.integer "event_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

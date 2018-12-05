@@ -24,17 +24,10 @@ class RequestsController < ApplicationController
   # POST /requests
   # POST /requests.json
   def create
-    @request = Request.new(request_params)
-
-    respond_to do |format|
-      if @request.save
-        format.html { redirect_to @request, notice: 'Request was successfully created.' }
-        format.json { render :show, status: :created, location: @request }
-      else
-        format.html { render :new }
-        format.json { render json: @request.errors, status: :unprocessable_entity }
-      end
-    end
+  	@event = Event.find(params[:event_id])
+    @request = @event.requests.create(request_params)
+    flash[:notice] = 'Request was made'
+    redirect_to event_path(@event)
   end
 
   # PATCH/PUT /requests/1
@@ -69,6 +62,6 @@ class RequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_params
-      params.fetch(:request, {})
+      params.require(:request).permit(:user_id, :event_id)
     end
 end
