@@ -22,12 +22,11 @@ class User < ApplicationRecord
   #validacao do gender
   #validacao do formato do email
   #associacoes:
-
+  has_many :invitations_made, class_name: "Invitation", inverse_of: 'inviter'
+  has_many :invitarions_received, class_name: "Invitation", inverse_of: 'invitee'
   has_many :ratings_made, :class_name => "Rating", :foreign_key => 'rater_id'
   has_many :ratings_received, :class_name => "Rating", :foreign_key => 'rated_id'
 
-  has_many :invitations_made, class_name: "Invitation", inverse_of: 'inviter'
-  has_many :invitarions_received, class_name: "Invitation", inverse_of: 'invitee'
   has_many :reports_made, class_name: "Report", inverse_of: 'reporter'
   has_many :reports_received, class_name: "Report", inverse_of: 'reported'
   has_many :requests
