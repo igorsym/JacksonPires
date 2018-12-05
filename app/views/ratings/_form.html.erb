@@ -1,5 +1,25 @@
 <%= form_with(model: @rating, local: true) do |form| %>
 
+  <% @event = Event.find(params[:event_id]) %>
+  <% @participations = Participation.where("event_id = ?", @event.id) %>
+
+  <div class="field">
+  <% @current_user_id = params[:rater] %>
+  <% if @participations %>
+  <% @count = 0 %>
+  <% loop do %>
+    <% if @count >= @participations.length %>
+      <% break %>
+      <%end%>
+      <% if @participations[@count].user_id != @current_user_id %>
+        <%= form.radio_button :rated_id, @participations[@count].user_id, :style => "display:inline" %>
+        <%= form.label :rated_id, User.find(@participations[@count].user_id).name, :style => "display:inline", :value => @participations[@count].user_id %>
+        <% @count += 1 %>
+      <%end%>
+    <% end %>
+  <% end %>
+  </div>
+
   <% if rating.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
@@ -12,8 +32,7 @@
     </div>
   <% end %>
 
-  <%= form.hidden_field :rater_id, :value => current_user.id %>
-  <%= form.hidden_field :rated_id, :value => current_user.id %>
+  <%= form.hidden_field :rater_id, :value => @current_user_id %>
   <%= form.hidden_field :event_id, :value => params[:event_id] %>
 
   <div class="field">

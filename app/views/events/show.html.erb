@@ -1,4 +1,4 @@
-<b><%= @current_user.name %></b>
+<%= notice %>
 <p>
   <strong>Name:</strong>
   <%= @event.name %>
@@ -51,18 +51,28 @@
 <p>
   <% if @event.all_can_invite && @in_event %>
     <%= link_to 'Invite Users', new_event_invitation_url(@event)%><br>
-  <% elsif @event.all_can_invite && !@in_event%>
-    <strong>Ask to join: (add link later)</strong><br>
-  <% else @event.all_can_invite == false%>
+  <% elsif @event.all_can_invite && !@in_event && !@made_request%>
+    <%= form_with(model: [@event, @event.requests.build], local: true) do |form| %>
+      <%= form.hidden_field :user_id, :value => @current_user.id %>
+      <%= form.hidden_field :event_id, :value => @event.id %>
+      <%= form.submit "Ask to join"%>
+    <% end %>
+  <% elsif @event.all_can_invite && !@in_event && @made_request%>
+    <strong>Waiting for approval<strong>
+  <% elsif @event.all_can_invite == false%>
     <% if @host %>
       <%= link_to 'Invite Users', new_event_invitation_url(@event)%><br>
-    <% elsif !@in_event%>
-      <strong>Ask to join: (add link later)</strong><br>
+    <% elsif !@in_event && !@made_request%>
+      <%= form_with(model: [@event, @event.requests.build], local: true) do |form| %>
+        <%= form.hidden_field :user_id, :value => @current_user.id %>
+        <%= form.submit "Ask to join" %>
+      <% end %>
+    <% elsif !@in_event && @made_request%>
+      <strong>Waiting for approval<strong>
     <% end %>
   <% end %>
 </p>
 
-<%= link_to "Rate someone", new_rating_path(:event_id => @event.id) %> | <%= link_to "Report someone", new_report_path %><br/><br/>
 
 <% if @current_user.invitations && params[:confirmed] == nil %>
   <% @current_user.invitations.each do |invitation| %>
@@ -82,6 +92,11 @@
 <br />
 <%= link_to "Home", root_url %>
 
+
+
+<% if @in_event %>
+<%= link_to "Rate someone", new_rating_path(:event_id => @event.id, :rater => @current_user.id) %> | <%= link_to "Report someone", new_report_path(:event_id => @event.id, :reporter => @current_user.id) %><br/><br/>
+  <% end %>
 
 <!--      new_event_rating_url(@event) new_rating_path(:event => @event, :rater => current_user.id)
 <strong>Avaliar um participante (add link later)</strong>

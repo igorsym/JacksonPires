@@ -1,10 +1,10 @@
 class Event < ApplicationRecord
   has_many :requests
   has_many :users, through: :participations
-  has_many :participations
-  has_many :ratings
+  has_many :participations, dependent: :destroy
+  has_many :ratings, dependent: :destroy
   has_many :reports
-  has_many :invitations
+  has_many :invitations, dependent: :destroy
 
   #validacoes:
   validates_presence_of :name

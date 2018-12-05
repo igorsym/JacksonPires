@@ -28,6 +28,13 @@ class EventsController < ApplicationController
       @participating_users << User.find(participation.user_id)
     end
 
+    @made_request = false
+    if @event.requests.first != nil
+    	@request_by_user = @event.requests.where("user_id = ?", @current_user.id)
+    	if !@request_by_user.empty?
+    		@made_request = true
+    	end
+    end
     @in_event = @current_user.in? (@participating_users)
 
 
@@ -93,10 +100,12 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Event was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

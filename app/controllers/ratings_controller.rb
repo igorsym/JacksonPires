@@ -27,12 +27,12 @@ class RatingsController < ApplicationController
   # POST /ratings.json
   def create
     @rating = Rating.new(rating_params)
-
+    @event = Event.find(rating_params[:event_id])
     # @rating.rater_id = current_user.id
 
     respond_to do |format|
       if @rating.save
-        format.html { redirect_to @rating, notice: 'Rating was successfully created.' }
+        format.html { redirect_to event_path(@event), notice: 'Rating was successfully created.' }
         format.json { render :show, status: :created, location: @rating }
       else
         format.html { render :new }
@@ -73,6 +73,6 @@ class RatingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rating_params
-      params.require(:rating).permit(:stars, :comment)
+      params.require(:rating).permit(:stars, :comment, :rater_id, :rated_id, :event_id)
     end
 end
