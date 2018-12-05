@@ -1,6 +1,6 @@
 <h1>Invite Users</h1>
 
-<% @event = Event.find(params[:name]) %>
+<% @event = Event.find(params[:event_id]) %>
 <% @participations = Participation.where("event_id = ?", @event.id) %>
 <% @p_users = [] %>
 <% @participations.each do |participation| %>
