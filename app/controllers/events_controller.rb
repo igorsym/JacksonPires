@@ -48,15 +48,6 @@ class EventsController < ApplicationController
         end
         i = i + 1
       end
-    else
-      i = 0
-      while i < @current_user.invitations.length do
-        event2= Event.find(@current_user.invitations[i].event_id)
-        if event2.id == @event.id
-          @current_user.invitations[i].destroy
-        end
-        i = i + 1
-      end
     end
   end
 
